@@ -15,8 +15,8 @@ public class Ingredient implements Serializable {
 	private int id;
 	private String name;
 	private int calories;
-	
-	
+	private int quantity;
+
 	public Ingredient() {
 		this.id = 0;
 		this.name = "";
@@ -47,12 +47,18 @@ public class Ingredient implements Serializable {
 	public void setCalories(int calories) {
 		this.calories = calories;
 	}
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	
 	public void save() {
 		Dao.save(this);
 	}
-	
-	public static Ingredient findIngredient(Ingredient item){
-		return (Ingredient) Dao.find();
+	public static Ingredient loadIngredients(){
+		return (Ingredient) Dao.load("ingredient");
 	}
 }

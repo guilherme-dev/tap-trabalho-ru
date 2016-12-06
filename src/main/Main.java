@@ -19,7 +19,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		Ingredient ingr = new Ingredient(1, "arroz", 200);
 		ingr.save();
-		Ingredient novoIngr = Ingredient.findIngredient(ingr);
+		Ingredient novoIngr = Ingredient.loadIngredients();
 		System.out.println(novoIngr.getName());
 	}
 

@@ -4,17 +4,25 @@
 package model.dao;
 
 import java.io.*;
+import java.util.ArrayList;
 
-import model.entity.Ingredient;
+import model.entity.*;
 
 /**
  * @author guilherme
  *
  */
 public class Dao {
-	public static <T>  void save(T el) {
+	public static void save(Object el) {
+		FileOutputStream fileOut = null;
 		try {
-			FileOutputStream fileOut = new FileOutputStream("data/data.ser");
+			if(el instanceof Ingredient) {
+				fileOut = new FileOutputStream("data/ingredients.ser");
+			} else if (el instanceof Recipe) {
+				fileOut = new FileOutputStream("data/recipes.ser");
+			} else if (el instanceof Meal) {
+				fileOut = new FileOutputStream("data/meals.ser");
+			}
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(el);
 			out.close();
@@ -24,20 +32,31 @@ public class Dao {
 			e.printStackTrace();
 		}
 	}
-	public static Ingredient find() {
-		Ingredient ingr = null;
+	
+	public static Object load(String elType) {
+		FileInputStream fileIn = null;
+		Object obj;
 		try {
-	         FileInputStream fileIn = new FileInputStream("data/data.ser");
-	         ObjectInputStream in = new ObjectInputStream(fileIn);
-	         ingr = (Ingredient) in.readObject();
-	         in.close();
-	         fileIn.close();
-	    } catch(IOException e) {
+			if(elType.equals("ingredient")) {
+				fileIn = new FileInputStream("data/ingredients.ser");
+			} else if (elType.equals("recipe")) {
+				fileIn = new FileInputStream("data/recipes.ser");
+			} else if (elType.equals("meal")) {
+				fileIn = new FileInputStream("data/meals.ser");
+			} else {
+				return null;
+			}
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+		    obj = in.readObject();
+		    in.close();
+		    fileIn.close();
+		    return obj;
+		} catch(IOException e) {
             e.printStackTrace();
         } catch(ClassNotFoundException c) {
             System.out.println("Employee class not found");
             c.printStackTrace();
         }
-		return ingr;
+	    return null;
 	}
 }
