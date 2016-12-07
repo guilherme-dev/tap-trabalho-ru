@@ -17,11 +17,13 @@ public class Dao {
 		FileOutputStream fileOut = null;
 		try {
 			if(el instanceof Ingredient) {
-				fileOut = new FileOutputStream("data/ingredients.ser");
+				fileOut = new FileOutputStream("data/ingredient.ser");
 			} else if (el instanceof Recipe) {
 				fileOut = new FileOutputStream("data/recipes.ser");
 			} else if (el instanceof Meal) {
 				fileOut = new FileOutputStream("data/meals.ser");
+			} else if (el instanceof ArrayList) {
+				fileOut = new FileOutputStream("data/stock.ser");
 			}
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(el);
@@ -38,11 +40,13 @@ public class Dao {
 		Object obj;
 		try {
 			if(elType.equals("ingredient")) {
-				fileIn = new FileInputStream("data/ingredients.ser");
+				fileIn = new FileInputStream("data/ingredient.ser");
 			} else if (elType.equals("recipe")) {
 				fileIn = new FileInputStream("data/recipes.ser");
 			} else if (elType.equals("meal")) {
 				fileIn = new FileInputStream("data/meals.ser");
+			} else if (elType.equals("stock")) {
+				fileIn = new FileInputStream("data/stock.ser");
 			} else {
 				return null;
 			}
@@ -52,11 +56,12 @@ public class Dao {
 		    fileIn.close();
 		    return obj;
 		} catch(IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+			return null;
         } catch(ClassNotFoundException c) {
             System.out.println("Employee class not found");
-            c.printStackTrace();
+            //c.printStackTrace();
+            return null;
         }
-	    return null;
 	}
 }

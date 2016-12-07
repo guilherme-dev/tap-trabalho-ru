@@ -21,12 +21,14 @@ public class Ingredient implements Serializable {
 		this.id = 0;
 		this.name = "";
 		this.calories = 0;
+		this.quantity = 0;
 	}
 	
-	public Ingredient(int id, String name, int calories) {
+	public Ingredient(int id, String name, int calories, int quantity) {
 		this.id = id;
 		this.name = name;
 		this.calories = calories;
+		this.quantity = quantity;
 	}
 	
 	public int getId() {
