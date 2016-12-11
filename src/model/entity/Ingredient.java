@@ -12,31 +12,22 @@ import model.dao.*;
  */
 public class Ingredient implements Serializable {
 	
-	private int id;
 	private String name;
 	private int calories;
 	private int quantity;
 
 	public Ingredient() {
-		this.id = 0;
 		this.name = "";
 		this.calories = 0;
 		this.quantity = 0;
 	}
 	
-	public Ingredient(int id, String name, int calories, int quantity) {
-		this.id = id;
+	public Ingredient(String name, int calories, int quantity) {
 		this.name = name;
 		this.calories = calories;
 		this.quantity = quantity;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}

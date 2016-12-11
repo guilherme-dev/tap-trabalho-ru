@@ -3,36 +3,39 @@
  */
 package model.entity;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 import model.dao.Dao;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+
 /**
- * @author guilherme
+ * @author guilherme, ana
  *
  */
 public class Recipe implements Serializable {
 	
-	private int id;
 	private String name;
 	private String description;
-	ArrayList<RecipeIngredient> ingredientList = new ArrayList<RecipeIngredient>();
+	//Key: objeto ingredient, value eh a quantidade do ingredient na receita
+	private Hashtable<Ingredient, Integer> ingredientList;
 	
-	public Recipe(int id, String name, String description, ArrayList<RecipeIngredient> ingredientList) {
+	
+	public Recipe(String name, String description) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.ingredientList = ingredientList;
+		this.ingredientList = null;
 	}
 	
-	public int getId() {
-		return id;
+	public void save() {
+		Dao.save(this);
 	}
-	public void setId(int id) {
-		this.id = id;
+	public static Recipe load() {
+		return (Recipe) Dao.load("recipes");
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -44,19 +47,13 @@ public class Recipe implements Serializable {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	} 
-	public ArrayList<RecipeIngredient> getIngredientList() {
+	}
+	public Hashtable<Ingredient, Integer> getIngredientList() {
 		return ingredientList;
 	}
-	public void setIngredientList(ArrayList<RecipeIngredient> ingredientList) {
+
+	public void setIngredientList(Hashtable<Ingredient, Integer> ingredientList) {
 		this.ingredientList = ingredientList;
-	}
-	
-	public void save() {
-		Dao.save(this);
-	}
-	public static Recipe loadRecipes() {
-		return (Recipe) Dao.load("recipe");
 	}
 	
 }

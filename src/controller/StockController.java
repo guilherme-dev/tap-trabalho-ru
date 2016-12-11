@@ -13,34 +13,19 @@ import model.entity.*;
  */
 public class StockController {
 
-	ArrayList<Ingredient> stock;
+	Stock stockModel;
+	int tracker;
 	
 	
 	
 	public StockController() {
-		this.stock = Stock.loadStock();
-		if (!(stock == null)){
-			System.out.println("Estoque carregado corretamente..");
-		} else {
-			System.out.println("Nenhum arquivo para estoque, criando novo..");
-			this.stock = new ArrayList<Ingredient>();
-		}
+		this.stockModel = new Stock();
 	}
 
-	public void insertIngredient(Ingredient item) {
-		
-		if(!this.stock.contains(item)){
-			this.stock.add(item);
-			Stock.save(this.stock);
-			System.out.println("Item inserido no estoque");
-		} else {
-			System.out.println("Item ja esta no estoque");
-		}
+	//name, calories e quantity sao fornecidos pela view
+	public void addToStock(String name, int calories, int quantity) {
+		Ingredient item = new Ingredient(name, calories, quantity);
+		this.stockModel.insertIngredient(item);
 	}
-	
-//	public Ingredient getIngredient(int id){
-//		
-//		
-//	}
 	
 }
