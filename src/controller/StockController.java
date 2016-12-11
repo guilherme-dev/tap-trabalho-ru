@@ -29,5 +29,5 @@ public class StockController {
 		Stock.save(stock);
 		System.out.println("Item saved on stock");
 	}
-	
+		
 }
