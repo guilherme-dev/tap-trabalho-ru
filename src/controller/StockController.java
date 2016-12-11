@@ -13,21 +13,34 @@ import model.entity.*;
  */
 public class StockController {
 
+	ArrayList<Ingredient> stock;
 	
-	public static void insertIngredient(Ingredient item) {
-		ArrayList<Ingredient> stock = Stock.loadStock();
+	
+	
+	public StockController() {
+		this.stock = Stock.loadStock();
 		if (!(stock == null)){
-			System.out.println("File not found, creating new");
-			if(!stock.contains(item)){
-				stock.add(item);
-			} else {
-				System.out.println("Item already on stock");
-			}
+			System.out.println("Estoque carregado corretamente..");
+		} else {
+			System.out.println("Nenhum arquivo para estoque, criando novo..");
+			this.stock = new ArrayList<Ingredient>();
 		}
-		stock = new ArrayList<Ingredient>();
-		stock.add(item);
-		Stock.save(stock);
-		System.out.println("Item saved on stock");
 	}
+
+	public void insertIngredient(Ingredient item) {
+		
+		if(!this.stock.contains(item)){
+			this.stock.add(item);
+			Stock.save(this.stock);
+			System.out.println("Item inserido no estoque");
+		} else {
+			System.out.println("Item ja esta no estoque");
+		}
+	}
+	
+//	public Ingredient getIngredient(int id){
+//		
+//		
+//	}
 	
 }

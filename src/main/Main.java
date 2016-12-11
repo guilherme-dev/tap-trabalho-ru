@@ -3,8 +3,6 @@
  */
 package main;
 
-import java.io.*;
-
 import controller.StockController;
 import model.entity.*;
 
@@ -18,12 +16,18 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		//Novo ingrediente, serializa em ingredient.ser
 		Ingredient ingr = new Ingredient(1, "arroz", 200, 100);
 		ingr.save();
+		StockController stockController = new StockController();
+		
+		//Faz load do ingredient serializado no arquivo
 		//Ingredient novoIngr = Ingredient.loadIngredients();
 		//System.out.println(novoIngr.getName());
-		StockController.insertIngredient(ingr);
+		
+		//Insere ingrediente no estoque, se o arquivo stock.ser nao existe, cria novo
+		stockController.insertIngredient(ingr);
 	}
 
 }

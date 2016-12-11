@@ -14,7 +14,7 @@ import model.dao.Dao;
  */
 public class Stock implements Serializable {
 	
-	ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+	ArrayList<Ingredient> ingredientList;
 
 	public ArrayList<Ingredient> getIngredientList() {
 		return ingredientList;
