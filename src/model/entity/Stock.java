@@ -29,7 +29,7 @@ public class Stock implements Serializable {
 	}
 
 	public void save() {
-		Dao.save(this.stock);
+		Dao.save("stock", this.stock);
 	}
 	
 	public void load(){
@@ -47,7 +47,7 @@ public class Stock implements Serializable {
 		}
 	}
 	
-	public Ingredient getIngredient(Ingredient item){
+	public Ingredient getIngredient(Ingredient item) {
 		if(this.stock.contains(item)){
 			int i = this.stock.indexOf(item);
 			return this.stock.get(i);
@@ -55,5 +55,18 @@ public class Stock implements Serializable {
 			System.out.println("O item nao foi encontrado no estoque");
 			return null;
 		}
+	}
+	
+	public Ingredient getIngredientByName(String name) {
+		int i;
+		Ingredient item;
+		for(i = 0; i < this.stock.size(); i++){
+			
+			item = this.stock.get(i);
+			if(item.getName().equals(name)){
+				return item;
+			}
+		}
+		return null;
 	}
 }

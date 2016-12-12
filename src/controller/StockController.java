@@ -3,8 +3,6 @@
  */
 package controller;
 
-import java.util.ArrayList;
-
 import model.entity.*;
 
 /**
@@ -13,19 +11,28 @@ import model.entity.*;
  */
 public class StockController {
 
-	Stock stockModel;
-	int tracker;
+	Stock stock;
 	
 	
 	
 	public StockController() {
-		this.stockModel = new Stock();
+		this.stock = new Stock();
 	}
 
 	//name, calories e quantity sao fornecidos pela view
 	public void addToStock(String name, int calories, int quantity) {
 		Ingredient item = new Ingredient(name, calories, quantity);
-		this.stockModel.insertIngredient(item);
+		this.stock.insertIngredient(item);
 	}
 	
+	public Ingredient getFromStock(Ingredient item, String name) {
+		if(item == null && name != null){
+			return this.stock.getIngredientByName(name);
+		} else if(item != null && name == null){
+			return this.stock.getIngredient(item);
+		} else {
+			System.out.println("Argumetos errados em getFromStock");
+			return null;
+		}
+	}
 }

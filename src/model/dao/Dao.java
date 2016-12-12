@@ -13,16 +13,16 @@ import model.entity.*;
  *
  */
 public class Dao {
-	public static void save(Object el) {
+	public static void save(String elType, Object el) {
 		FileOutputStream fileOut = null;
 		try {
-			if(el instanceof Ingredient) {
+			if(elType.equals("ingredient")) {
 				fileOut = new FileOutputStream("data/ingredient.ser");
-			} else if (el instanceof Recipe) {
+			} else if (elType.equals("recipes")) {
 				fileOut = new FileOutputStream("data/recipes.ser");
-			} else if (el instanceof Meal) {
+			} else if (elType.equals("meal")) {
 				fileOut = new FileOutputStream("data/meals.ser");
-			} else if (el instanceof ArrayList) {
+			} else if (elType.equals("stock")) {
 				fileOut = new FileOutputStream("data/stock.ser");
 			}
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -41,9 +41,9 @@ public class Dao {
 		try {
 			if(elType.equals("ingredient")) {
 				fileIn = new FileInputStream("data/ingredient.ser");
-			} else if (elType.equals("recipe")) {
+			} else if (elType.equals("recipes")) {
 				fileIn = new FileInputStream("data/recipes.ser");
-			} else if (elType.equals("meal")) {
+			} else if (elType.equals("meals")) {
 				fileIn = new FileInputStream("data/meals.ser");
 			} else if (elType.equals("stock")) {
 				fileIn = new FileInputStream("data/stock.ser");

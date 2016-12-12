@@ -30,7 +30,7 @@ public class RecipeList {
 	}
 
 	public void save() {
-		Dao.save(this.recipeList);
+		Dao.save("recipes", this.recipeList);
 	}
 	
 	public void load(){

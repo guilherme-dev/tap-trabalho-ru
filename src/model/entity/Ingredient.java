@@ -49,9 +49,9 @@ public class Ingredient implements Serializable {
 	}
 	
 	public void save() {
-		Dao.save(this);
+		Dao.save("ingredient", this);
 	}
-	public static Ingredient loadIngredients(){
+	public static Ingredient load(){
 		return (Ingredient) Dao.load("ingredient");
 	}
 }

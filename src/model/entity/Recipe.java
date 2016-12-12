@@ -30,7 +30,7 @@ public class Recipe implements Serializable {
 	}
 	
 	public void save() {
-		Dao.save(this);
+		Dao.save("ingredient", this);
 	}
 	public static Recipe load() {
 		return (Recipe) Dao.load("recipes");
