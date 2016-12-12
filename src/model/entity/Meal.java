@@ -36,7 +36,7 @@ public class Meal implements Serializable {
 	}	
 	
 	public void save() {
-		Dao.save(this);
+		Dao.save("meals", this);
 	}
 	public static Meal loadMeals(){
 		return (Meal) Dao.load("meal");
