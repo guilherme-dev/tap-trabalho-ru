@@ -26,7 +26,7 @@ public class Recipe implements Serializable {
 		super();
 		this.name = name;
 		this.description = description;
-		this.ingredientList = null;
+		this.ingredientList =  new Hashtable<Ingredient, Integer>();
 	}
 	
 	public void save() {
@@ -54,6 +54,15 @@ public class Recipe implements Serializable {
 
 	public void setIngredientList(Hashtable<Ingredient, Integer> ingredientList) {
 		this.ingredientList = ingredientList;
+	}
+	
+	public void putIngredient(Ingredient ingredient, int qty) {
+		if(this.ingredientList.containsKey(ingredient)){
+			System.out.println("Ingrediente ja adicionado");
+		} else {
+			this.ingredientList.put(ingredient, qty);
+			System.out.println("Ingrediente adicionado a receita");
+		}
 	}
 	
 }

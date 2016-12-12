@@ -31,14 +31,16 @@ public class Main {
 		
 		
 		//Insere ingrediente no estoque, se o arquivo stock.ser nao existe, cria novo
-		//stockController.addToStock("arroz", 150, 1000);
-		//stockController.addToStock("feijao", 150, 1000);
-		Ingredient ingredient = stockController.getFromStock(null, "feijao");
-		System.out.println(ingredient.getName());
+		stockController.addToStock("arroz", 150, 1000);
+		stockController.addToStock("feijao", 150, 1000);
+		Ingredient feijao = stockController.getFromStock(null, "feijao");
+		Ingredient arroz = stockController.getFromStock(null, "arroz");
 		
 		
-		//recipeController.newRecipe("arroz cozinho", "Para fazer arroz, coloca arroz e agua e sal e ferve e gg");
-		
+		Recipe newRecipe = new Recipe("arroz e feijao", "Para fazer arroz, coloca arroz e agua e sal e ferve e gg");
+		recipeController.addIngredients(newRecipe, arroz, 200);
+		recipeController.addIngredients(newRecipe, feijao, 200);
+		recipeController.saveRecipe(newRecipe);
 	}
 
 }

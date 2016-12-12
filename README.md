@@ -12,6 +12,6 @@ Projeto Java para calculo de refeições do RU
 
 -- Verifica se existe ingredientes suficientes em estoque
 
-- Criar receita
+- Criar receita [x]
 - Excluir receita 
 - Incluir item no estoque [x]

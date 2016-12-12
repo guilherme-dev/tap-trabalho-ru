@@ -3,6 +3,9 @@
  */
 package controller;
 
+import java.util.Hashtable;
+
+import model.entity.Ingredient;
 import model.entity.Recipe;
 import model.entity.RecipeList;
 
@@ -18,9 +21,12 @@ public class RecipeController {
 		this.recipes = new RecipeList();
 	}
 	
-	public void newRecipe(String name, String description) { 
-		Recipe recipe = new Recipe(name, description);
+	public void saveRecipe(Recipe recipe) { 
 		this.recipes.insertRecipe(recipe);
+	}
+	
+	public void addIngredients(Recipe recipe, Ingredient ingredient, int qty) {
+		recipe.putIngredient(ingredient, qty);
 	}
 	
 	
