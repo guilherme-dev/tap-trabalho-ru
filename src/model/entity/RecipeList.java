@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import model.dao.Dao;
 
 /**
- * @author guilherme
+ * @author ana araujo, guilherme santos
  *
  */
 public class RecipeList {

@@ -31,6 +31,25 @@ public class Recipe implements Serializable {
 		this.ingredientList =  new Hashtable<Ingredient, Integer>();
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		String str = "Receita:" + name + "\n" + "Descricao:" + description + "\n" + "Ingredientes: \n";
+		Ingredient item;
+		Set<Ingredient> ingredients = this.getIngredientList().keySet();
+		
+		Iterator<Ingredient> itr = ingredients.iterator();
+		
+		while(itr.hasNext()){
+			item = itr.next();
+			str = str + item.toString() + "\n";
+		}
+		return str;
+	}
+
+
+
 	public void save() {
 		Dao.save("ingredient", this);
 	}

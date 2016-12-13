@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import model.dao.Dao;
 
 /**
- * @author guilherme
+ * @authors guilherme
  *
  */
 public class Stock implements Serializable {

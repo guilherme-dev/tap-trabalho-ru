@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import model.dao.Dao;
 
 /**
- * @author guilherme
+ * @author ana araujo, guilherme santos
  *
  */
 public class Meal implements Serializable {
@@ -18,15 +18,6 @@ public class Meal implements Serializable {
 	private int quantity;
 	private int calories;
 	
-	
-	public int getCalories() {
-		return this.calories;
-	}
-
-	public void setCalories(int calories) {
-		this.calories = calories;
-	}
-
 	public Meal() {
 		this.name = "";
 		this.quantity = 0;
@@ -52,29 +43,45 @@ public class Meal implements Serializable {
 	public void setRecipeList(ArrayList<Recipe> recipeList) {
 		this.recipeList = recipeList;
 	}
-	
 	public int getQuantity() {
 		return quantity;
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public int getCalories() {
+		return this.calories;
+	}
+	public void setCalories(int calories) {
+		this.calories = calories;
+	}
 	
 	public void save() {
-		Dao.save("meals", this);
+		Dao.save("meal", this);
 	}
 	public static Meal load(){
 		return (Meal) Dao.load("meal");
 	}
 	
 	public void putRecipe(Recipe recipe) {
+		int totalCalories = this.calories;
 		if(this.recipeList.contains(recipe)){
 			System.out.println("Receita ja adicionada");
 		} else {
 			this.recipeList.add(recipe);
-			this.setCalories(recipe.getCalories());
+			totalCalories += recipe.getCalories();
+			this.setCalories(totalCalories);
 			this.save();
 			System.out.println("Receita adicionada a refeicao");
 		}
 	}
+	
+	public boolean enoughIngredient(Ingredient recipeIngredient, Ingredient stockIngredient){
+		if (recipeIngredient.getQuantity() *  this.getQuantity() < stockIngredient.getQuantity()){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

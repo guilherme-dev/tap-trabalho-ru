@@ -13,7 +13,7 @@ import model.entity.Recipe;
 import model.entity.RecipeList;
 
 /**
- * @author guilherme
+ * @author ana araujo, guilherme santos
  *
  */
 public class RecipeController {

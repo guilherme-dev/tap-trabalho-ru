@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import model.entity.*;
 
 /**
- * @author guilherme
+ * @author ana araujo, guilherme santos
  *
  */
 public class Dao {
@@ -43,7 +43,7 @@ public class Dao {
 				fileIn = new FileInputStream("data/ingredient.ser");
 			} else if (elType.equals("recipes")) {
 				fileIn = new FileInputStream("data/recipes.ser");
-			} else if (elType.equals("meals")) {
+			} else if (elType.equals("meal")) {
 				fileIn = new FileInputStream("data/meals.ser");
 			} else if (elType.equals("stock")) {
 				fileIn = new FileInputStream("data/stock.ser");

@@ -7,7 +7,7 @@ import java.io.Serializable;
 import model.dao.*;
 
 /**
- * @author guilherme
+ * @author ana araujo, guilherme santos
  *
  */
 public class Ingredient implements Serializable {
@@ -30,7 +30,7 @@ public class Ingredient implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Ingredient [name=" + name + ", calories=" + calories + ", quantity=" + quantity + "]";
+		return name + " - " + calories + " calorias, " + quantity + " gramas em estoque.";
 	}
 
 	public String getName() {

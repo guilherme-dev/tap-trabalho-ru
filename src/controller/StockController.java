@@ -6,7 +6,7 @@ package controller;
 import model.entity.*;
 
 /**
- * @author guilherme
+ * @author ana araujo, guilherme santos
  *
  */
 public class StockController {
