@@ -28,6 +28,11 @@ public class Ingredient implements Serializable {
 		this.quantity = quantity;
 	}
 	
+	@Override
+	public String toString() {
+		return "Ingredient [name=" + name + ", calories=" + calories + ", quantity=" + quantity + "]";
+	}
+
 	public String getName() {
 		return name;
 	}

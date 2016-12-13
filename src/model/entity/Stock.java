@@ -27,6 +27,19 @@ public class Stock implements Serializable {
 			this.stock = new ArrayList<Ingredient>();
 		}
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		String stockString = "";
+		for(int i = 0; i < this.stock.size(); i++){
+			stockString = stockString + this.stock.get(i).toString() + "\n";
+		}
+		return stockString;
+	}
+
+
 
 	public void save() {
 		Dao.save("stock", this.stock);

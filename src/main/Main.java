@@ -31,8 +31,9 @@ public class Main {
 		
 		
 		//Insere ingrediente no estoque, se o arquivo stock.ser nao existe, cria novo
-		stockController.addToStock("arroz", 150, 1000);
-		stockController.addToStock("feijao", 150, 1000);
+//		stockController.addToStock("arroz", 150, 1000);
+//		stockController.addToStock("feijao", 150, 1000);
+//		stockController.showStock();
 		Ingredient feijao = stockController.getFromStock(null, "feijao");
 		Ingredient arroz = stockController.getFromStock(null, "arroz");
 		
@@ -41,6 +42,7 @@ public class Main {
 		recipeController.addIngredients(newRecipe, arroz, 200);
 		recipeController.addIngredients(newRecipe, feijao, 200);
 		recipeController.saveRecipe(newRecipe);
+		System.out.println(recipeController.getRecipeCalories(newRecipe));
 	}
 
 }

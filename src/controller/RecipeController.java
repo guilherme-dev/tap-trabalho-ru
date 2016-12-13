@@ -3,7 +3,10 @@
  */
 package controller;
 
+import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Set;
 
 import model.entity.Ingredient;
 import model.entity.Recipe;
@@ -29,5 +32,8 @@ public class RecipeController {
 		recipe.putIngredient(ingredient, qty);
 	}
 	
+	public void removeFromRecipeList(Recipe recipe) {
+		this.recipes.deleteRecipe(recipe);
+	}
 	
 }

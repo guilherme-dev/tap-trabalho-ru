@@ -8,10 +8,11 @@ Projeto Java para calculo de refeições do RU
 -- Retornar quantidade de ingredientes a ser usado
 
 
--- Calorias de receita, Calorias total da refeição
+-- Calorias de receita [x]
+--  Calorias total da refeição [x]
 
 -- Verifica se existe ingredientes suficientes em estoque
 
 - Criar receita [x]
-- Excluir receita 
+- Excluir receita [x]
 - Incluir item no estoque [x]

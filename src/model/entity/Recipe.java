@@ -8,6 +8,8 @@ import model.dao.Dao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Set;
 
 
 /**
@@ -43,13 +45,13 @@ public class Recipe implements Serializable {
 		this.name = name;
 	}
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
 	public Hashtable<Ingredient, Integer> getIngredientList() {
-		return ingredientList;
+		return this.ingredientList;
 	}
 
 	public void setIngredientList(Hashtable<Ingredient, Integer> ingredientList) {
@@ -63,6 +65,22 @@ public class Recipe implements Serializable {
 			this.ingredientList.put(ingredient, qty);
 			System.out.println("Ingrediente adicionado a receita");
 		}
+	}
+	
+	public int getCalories(){
+		Ingredient item;
+		int totalCalories = 0;
+		Set<Ingredient> ingredients = this.getIngredientList().keySet();
+		
+		Iterator<Ingredient> itr = ingredients.iterator();
+		
+		while(itr.hasNext()){
+			item = itr.next();
+			totalCalories += item.getCalories();
+		}
+		
+		return totalCalories;
+		
 	}
 	
 }

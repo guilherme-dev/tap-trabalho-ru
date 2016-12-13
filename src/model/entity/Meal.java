@@ -13,15 +13,33 @@ import model.dao.Dao;
  *
  */
 public class Meal implements Serializable {
-	private int id;
 	private String name;
 	ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
-	public int getId() {
-		return id;
+	private int quantity;
+	private int calories;
+	
+	
+	public int getCalories() {
+		return this.calories;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setCalories(int calories) {
+		this.calories = calories;
 	}
+
+	public Meal() {
+		this.name = "";
+		this.quantity = 0;
+		this.calories = 0;
+	}
+	
+	public Meal(String name, int quantity) {
+		super();
+		this.name = name;
+		this.quantity = quantity;
+		this.calories = 0;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -33,12 +51,30 @@ public class Meal implements Serializable {
 	}
 	public void setRecipeList(ArrayList<Recipe> recipeList) {
 		this.recipeList = recipeList;
-	}	
+	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	
 	public void save() {
 		Dao.save("meals", this);
 	}
-	public static Meal loadMeals(){
+	public static Meal load(){
 		return (Meal) Dao.load("meal");
+	}
+	
+	public void putRecipe(Recipe recipe) {
+		if(this.recipeList.contains(recipe)){
+			System.out.println("Receita ja adicionada");
+		} else {
+			this.recipeList.add(recipe);
+			this.setCalories(recipe.getCalories());
+			this.save();
+			System.out.println("Receita adicionada a refeicao");
+		}
 	}
 }

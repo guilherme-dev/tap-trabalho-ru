@@ -57,4 +57,16 @@ public class RecipeList {
 		}
 	}
 	
+	public boolean deleteRecipe(Recipe item) {
+		if(this.recipeList.remove(item)){
+			this.save();
+			System.out.println("Receita removida");
+			return true;
+		} else {
+			System.out.println("Erro ao remover receita");
+			return false;
+		}
+		
+	}
+	
 }

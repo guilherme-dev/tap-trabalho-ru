@@ -35,4 +35,8 @@ public class StockController {
 			return null;
 		}
 	}
+	
+	public void showStock() {
+		System.out.println(this.stock.toString());
+	}
 }
