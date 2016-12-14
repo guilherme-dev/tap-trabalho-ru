@@ -9,15 +9,23 @@ import java.util.ArrayList;
 import model.dao.Dao;
 
 /**
- * @authors guilherme
+ * @authors guilherme, ana
  *
  */
 public class Stock implements Serializable {
 	
-	ArrayList<Ingredient> stock;
+	private ArrayList<Ingredient> stock;
 	
 	
 	
+	public ArrayList<Ingredient> getStock() {
+		return stock;
+	}
+
+	public void setStock(ArrayList<Ingredient> stock) {
+		this.stock = stock;
+	}
+
 	public Stock() {
 		this.stock = (ArrayList<Ingredient>) Dao.load("stock");
 		if (!(stock == null)){
@@ -52,9 +60,12 @@ public class Stock implements Serializable {
 	public void insertIngredient(Ingredient item) {
 		
 		if(!this.stock.contains(item)){
-			this.stock.add(item);
-			this.save();
-			System.out.println("Item inserido no estoque");
+			Ingredient stockIngredient = this.getIngredientByName(item.getName());
+			if(stockIngredient == null) {
+				this.stock.add(item);
+				this.save();
+				System.out.println("Item inserido no estoque");
+			}
 		} else {
 			System.out.println("Item ja esta no estoque");
 		}

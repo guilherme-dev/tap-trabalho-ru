@@ -29,7 +29,7 @@ public class Dao {
 			out.writeObject(el);
 			out.close();
 			fileOut.close();
-			System.out.println("Serialized data is saved in data.ser");
+			System.out.println("Objeto serializado em data/");
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -59,7 +59,7 @@ public class Dao {
             //e.printStackTrace();
 			return null;
         } catch(ClassNotFoundException c) {
-            System.out.println("Employee class not found");
+            System.out.println("Class not found na hora de deserializar");
             //c.printStackTrace();
             return null;
         }

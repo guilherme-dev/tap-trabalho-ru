@@ -3,6 +3,8 @@
  */
 package controller;
 
+import java.util.ArrayList;
+
 import model.entity.*;
 
 /**
@@ -34,6 +36,10 @@ public class StockController {
 			System.out.println("Argumetos errados em getFromStock");
 			return null;
 		}
+	}
+	
+	public ArrayList<Ingredient> getStock(){
+		return this.stock.getStock();
 	}
 	
 	public void showStock() {
