@@ -17,6 +17,8 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextArea;
+import java.awt.Font;
+import javax.swing.JComboBox;
 
 public class Main {
 
@@ -32,6 +34,12 @@ public class Main {
 	private JTextField txtCalorias;
 	private JTable table;
 	private JTextField textField_recipeName;
+	private JTextField textField_recipe;
+	private JTextField textField_recipeIngredient;
+	private JTextField textField_qtyIngredient;
+	private JTextField textField_mealName;
+	private JTextField textField_mealQuantity;
+	private JTextField textField_mealRecipe;
 
 	/**
 	 * Launch the application.
@@ -61,12 +69,13 @@ public class Main {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 769, 545);
+		frame.setBounds(100, 100, 1132, 708);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblIngredientes = new JLabel("Ingredientes");
-		lblIngredientes.setBounds(12, 12, 97, 15);
+		lblIngredientes.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblIngredientes.setBounds(12, 12, 123, 15);
 		frame.getContentPane().add(lblIngredientes);
 		
 		JLabel lblNome = new JLabel("Nome");
@@ -97,6 +106,7 @@ public class Main {
 		txtCalorias.setColumns(10);
 		
 		JLabel lblEstoque = new JLabel("Estoque");
+		lblEstoque.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblEstoque.setBounds(12, 111, 70, 15);
 		frame.getContentPane().add(lblEstoque);
 		
@@ -133,6 +143,7 @@ public class Main {
 		
 		
 		JLabel lblReceitas = new JLabel("Receitas");
+		lblReceitas.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblReceitas.setBounds(12, 278, 70, 15);
 		frame.getContentPane().add(lblReceitas);
 		
@@ -146,16 +157,101 @@ public class Main {
 		textField_recipeName.setColumns(10);
 		
 		JLabel lblDescrio = new JLabel("Descrição");
-		lblDescrio.setBounds(282, 305, 79, 15);
+		lblDescrio.setBounds(12, 352, 79, 15);
 		frame.getContentPane().add(lblDescrio);
 		
 		JTextArea textArea_recipeDescription = new JTextArea();
-		textArea_recipeDescription.setBounds(275, 323, 362, 97);
+		textArea_recipeDescription.setBounds(12, 379, 362, 97);
 		frame.getContentPane().add(textArea_recipeDescription);
 		
 		JButton btnCriarReceita = new JButton("Criar Receita");
-		btnCriarReceita.setBounds(24, 377, 142, 25);
+		btnCriarReceita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Recipe newRecipe = new Recipe(textField_recipeName.getText(), textArea_recipeDescription.getText());
+				recipeController.saveRecipe(newRecipe);
+			}
+		});
+		btnCriarReceita.setBounds(12, 488, 142, 25);
 		frame.getContentPane().add(btnCriarReceita);
+		
+		JLabel lblAdicionarIngredientes = new JLabel("Adicionar Ingredientes");
+		lblAdicionarIngredientes.setBounds(516, 305, 172, 15);
+		frame.getContentPane().add(lblAdicionarIngredientes);
+		
+		JLabel lblReceita = new JLabel("Receita");
+		lblReceita.setBounds(469, 352, 70, 15);
+		frame.getContentPane().add(lblReceita);
+		
+		textField_recipe = new JTextField();
+		textField_recipe.setBounds(465, 377, 202, 19);
+		frame.getContentPane().add(textField_recipe);
+		textField_recipe.setColumns(10);
+		
+		JLabel lblIngrendiente = new JLabel("Ingrendiente");
+		lblIngrendiente.setBounds(703, 352, 117, 15);
+		frame.getContentPane().add(lblIngrendiente);
+		
+		textField_recipeIngredient = new JTextField();
+		textField_recipeIngredient.setBounds(703, 377, 202, 19);
+		frame.getContentPane().add(textField_recipeIngredient);
+		textField_recipeIngredient.setColumns(10);
+		
+		JLabel lblQuantidade_1 = new JLabel("Quantidade");
+		lblQuantidade_1.setBounds(465, 408, 117, 15);
+		frame.getContentPane().add(lblQuantidade_1);
+		
+		textField_qtyIngredient = new JTextField();
+		textField_qtyIngredient.setBounds(465, 435, 114, 19);
+		frame.getContentPane().add(textField_qtyIngredient);
+		textField_qtyIngredient.setColumns(10);
+		
+		JButton btnAdicionarNaReceita = new JButton("Adicionar na receita");
+		btnAdicionarNaReceita.setBounds(638, 432, 239, 25);
+		frame.getContentPane().add(btnAdicionarNaReceita);
+		
+		JLabel lblRefeies = new JLabel("Refeições");
+		lblRefeies.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblRefeies.setBounds(12, 534, 142, 15);
+		frame.getContentPane().add(lblRefeies);
+		
+		JLabel lblNome_2 = new JLabel("Nome");
+		lblNome_2.setBounds(12, 561, 70, 15);
+		frame.getContentPane().add(lblNome_2);
+		
+		textField_mealName = new JTextField();
+		textField_mealName.setBounds(12, 588, 209, 19);
+		frame.getContentPane().add(textField_mealName);
+		textField_mealName.setColumns(10);
+		
+		JLabel lblServeQuantasPessoas = new JLabel("Serve quantas pessoas");
+		lblServeQuantasPessoas.setBounds(254, 561, 184, 15);
+		frame.getContentPane().add(lblServeQuantasPessoas);
+		
+		textField_mealQuantity = new JTextField();
+		textField_mealQuantity.setBounds(254, 588, 114, 19);
+		frame.getContentPane().add(textField_mealQuantity);
+		textField_mealQuantity.setColumns(10);
+		
+		JButton btnCriarRefeio = new JButton("Criar  Refeição");
+		btnCriarRefeio.setBounds(12, 619, 142, 25);
+		frame.getContentPane().add(btnCriarRefeio);
+		
+		JLabel lblAdicionarReceita = new JLabel("Adicionar Receita");
+		lblAdicionarReceita.setBounds(516, 551, 163, 34);
+		frame.getContentPane().add(lblAdicionarReceita);
+		
+		textField_mealRecipe = new JTextField();
+		textField_mealRecipe.setBounds(516, 588, 167, 19);
+		frame.getContentPane().add(textField_mealRecipe);
+		textField_mealRecipe.setColumns(10);
+		
+		JButton btnAdicionarNaRefeio = new JButton("Adicionar na refeição");
+		btnAdicionarNaRefeio.setBounds(516, 619, 220, 25);
+		frame.getContentPane().add(btnAdicionarNaRefeio);
+		
+		JButton btnGerarOrdemDe = new JButton("Gerar Ordem de Refeição");
+		btnGerarOrdemDe.setBounds(839, 572, 220, 25);
+		frame.getContentPane().add(btnGerarOrdemDe);
 		
 		
 		
