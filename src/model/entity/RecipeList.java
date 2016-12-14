@@ -21,6 +21,19 @@ public class RecipeList {
 		}
 	}
 
+	
+	@Override
+	public String toString() {
+		String recipesString = "";
+		Recipe recipe;
+		for(int i = 0; i < recipeList.size(); i++){
+			recipe = this.recipeList.get(i);
+			recipesString +=  recipe.getName() + " \n";
+		}
+		return "Receitas Salvas: \n" + recipesString;
+	}
+
+
 	public ArrayList<Recipe> getRecipeList() {
 		return recipeList;
 	}
@@ -55,6 +68,19 @@ public class RecipeList {
 			System.out.println("Receita nao encontrada");
 			return null;
 		}
+	}
+	
+	public Recipe getRecipeByName(String name) {
+		int i;
+		Recipe recipe;
+		for(i = 0; i < this.recipeList.size(); i++){
+			
+			recipe = this.recipeList.get(i);
+			if(recipe.getName().equals(name)){
+				return recipe;
+			}
+		}
+		return null;
 	}
 	
 	public boolean deleteRecipe(Recipe item) {

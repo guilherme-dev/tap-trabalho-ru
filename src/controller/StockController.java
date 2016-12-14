@@ -42,7 +42,7 @@ public class StockController {
 		return this.stock.getStock();
 	}
 	
-	public void showStock() {
-		System.out.println(this.stock.toString());
+	public String showStock() {
+		return this.stock.toString();
 	}
 }

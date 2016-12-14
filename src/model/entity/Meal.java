@@ -30,6 +30,19 @@ public class Meal implements Serializable {
 		this.quantity = quantity;
 		this.calories = 0;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		String mealString = "Nome: " + this.name + " - Serve " + this.quantity + " \n" + "Receitas:\n";
+		Recipe recipe;
+		for(int i = 0; i < this.recipeList.size(); i++){
+			recipe = this.recipeList.get(i);
+			mealString += recipe.getName() + " \n";
+		}
+		return mealString;
+	}
 
 	public String getName() {
 		return name;

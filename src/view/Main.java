@@ -14,6 +14,8 @@ import controller.*;
 import model.entity.*;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextArea;
@@ -40,6 +42,7 @@ public class Main {
 	private JTextField textField_mealName;
 	private JTextField textField_mealQuantity;
 	private JTextField textField_mealRecipe;
+	private JTextField textField_recipeName2;
 
 	/**
 	 * Launch the application.
@@ -206,6 +209,14 @@ public class Main {
 		textField_qtyIngredient.setColumns(10);
 		
 		JButton btnAdicionarNaReceita = new JButton("Adicionar na receita");
+		btnAdicionarNaReceita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ingredient itemRecipe = stockController.getFromStock(null, textField_recipeIngredient.getText());
+				Recipe recipeSelected = recipeController.getRecipe(textField_recipe.getText());
+				recipeController.addIngredients(recipeSelected, itemRecipe, Integer.parseInt(textField_qtyIngredient.getText()));
+				recipeController.saveRecipe(recipeSelected);
+			}
+		});
 		btnAdicionarNaReceita.setBounds(638, 432, 239, 25);
 		frame.getContentPane().add(btnAdicionarNaReceita);
 		
@@ -233,6 +244,11 @@ public class Main {
 		textField_mealQuantity.setColumns(10);
 		
 		JButton btnCriarRefeio = new JButton("Criar  Refeição");
+		btnCriarRefeio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mealController.createMeal(textField_mealName.getText(), Integer.parseInt(textField_mealQuantity.getText()));
+			}
+		});
 		btnCriarRefeio.setBounds(12, 619, 142, 25);
 		frame.getContentPane().add(btnCriarRefeio);
 		
@@ -246,12 +262,62 @@ public class Main {
 		textField_mealRecipe.setColumns(10);
 		
 		JButton btnAdicionarNaRefeio = new JButton("Adicionar na refeição");
+		btnAdicionarNaRefeio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Recipe mealRecipe = recipeController.getRecipe(textField_mealRecipe.getText());
+				mealController.addRecipe(mealRecipe);
+			}
+		});
 		btnAdicionarNaRefeio.setBounds(516, 619, 220, 25);
 		frame.getContentPane().add(btnAdicionarNaRefeio);
 		
 		JButton btnGerarOrdemDe = new JButton("Gerar Ordem de Refeição");
+		btnGerarOrdemDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, mealController.showMeal()); 
+			}
+		});
 		btnGerarOrdemDe.setBounds(839, 572, 220, 25);
 		frame.getContentPane().add(btnGerarOrdemDe);
+		
+		JLabel lblRemoverReceita = new JLabel("Remover Receita");
+		lblRemoverReceita.setBounds(950, 352, 152, 15);
+		frame.getContentPane().add(lblRemoverReceita);
+		
+		textField_recipeName2 = new JTextField();
+		textField_recipeName2.setBounds(945, 377, 142, 19);
+		frame.getContentPane().add(textField_recipeName2);
+		textField_recipeName2.setColumns(10);
+		
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Recipe recipeSelected = recipeController.getRecipe(textField_recipeName2.getText());
+				recipeController.removeFromRecipeList(recipeSelected);
+			}
+		});
+		btnRemover.setBounds(950, 403, 117, 25);
+		frame.getContentPane().add(btnRemover);
+		
+		JButton btnVerListaDe = new JButton("Ver lista de receitas");
+		btnVerListaDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String recipesListString = recipeController.showRecipes();
+				JOptionPane.showMessageDialog(null, recipesListString);
+			}
+		});
+		btnVerListaDe.setBounds(257, 488, 181, 25);
+		frame.getContentPane().add(btnVerListaDe);
+		
+		JButton btnVerEstoque = new JButton("Ver Estoque");
+		btnVerEstoque.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String message = stockController.showStock();
+				JOptionPane.showMessageDialog(null, message);
+			}
+		});
+		btnVerEstoque.setBounds(703, 63, 174, 25);
+		frame.getContentPane().add(btnVerEstoque);
 		
 		
 		

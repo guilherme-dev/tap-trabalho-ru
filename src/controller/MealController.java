@@ -59,4 +59,8 @@ public class MealController {
 		}
 		this.meal.putRecipe(recipe);
 	}
+	
+	public String showMeal(){
+		return this.meal.toString();
+	}
 }

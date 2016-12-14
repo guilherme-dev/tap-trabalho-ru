@@ -36,4 +36,12 @@ public class RecipeController {
 		this.recipes.deleteRecipe(recipe);
 	}
 	
+	public Recipe getRecipe(String name){
+		return this.recipes.getRecipeByName(name);
+	}
+	
+	public String showRecipes(){
+		return this.recipes.toString();
+	}
+	
 }
